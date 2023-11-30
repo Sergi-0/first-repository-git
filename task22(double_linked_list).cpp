@@ -117,6 +117,17 @@ bool double_linked_list::sort()
 
 	else
 
+	if (kfirst->next = min) {
+	min->next->previous = kfirst;
+	kfirst->next = min->next;
+	min->next = kfirst;
+	kfirst->previous = min;
+	min->previous = nullptr;
+	first = min;
+	}
+
+	else
+
 	{                                            ///////////////////////////// Я НЕ УЧИТЫВАЮ СИТУАЦИЮ КОГДА 2 ЭЛЕМЕНТА СТОЯТ ВЛОТНУЮ !!!!!!!!!!!!!!!!!!!!!!
 	(min->next)->previous = kfirst;
 	(min->previous)->next = kfirst;
@@ -128,7 +139,7 @@ bool double_linked_list::sort()
 	min->previous = nullptr;
 	first = min;
 	}
-/*
+
 	kfirst = min->next;
 	bool t = true;
 
@@ -191,7 +202,7 @@ bool double_linked_list::sort()
 			first->previous = Pig2;
 		}
 	kfirst = min->next;
-	}*/
+	}
 };
 
 int main()
@@ -205,5 +216,5 @@ int main()
 	b.vivod1();
 	b.vivod2();
 	b.sort();
-	b.vivod2();
+	b.vivod1();
 }
