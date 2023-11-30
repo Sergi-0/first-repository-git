@@ -146,30 +146,32 @@ bool double_linked_list::sort()
 	while (t) {
 		Pig1 = nullptr;
 		Pig2 = nullptr;
+        min = kfirst;
 		minn = kfirst->data;
-		min = kfirst;
 		a = kfirst;
-
+		cout << 111111111111111<<"   ";
 		while (a != nullptr)
 		{
 			if (a->data < minn) { min = a; minn = a->data; };
 			a = a->next;
 		}
 		
-		if (min->next == nullptr && kfirst->next->next == nullptr)          /////////// тут
+		if (min->next == nullptr && kfirst->next->next == nullptr)        
 		{
+			cout << "!!!!"<<kfirst << "!!!!!!!!";
 			kfirst->previous->next = min;
             min->previous = kfirst->previous;
             min->next = kfirst;
             kfirst->previous = min;
 			kfirst->next = nullptr;
 			last = kfirst;
+			cout << 111111111111111 << "   ";
 			return true;
 		}
 
 		else
 
-		if (min->next->next == nullptr && kfirst->next->next == nullptr) return true;
+		if (min->next->next == nullptr && kfirst->next->next == nullptr) {return true;}
 
 		else
 
@@ -184,22 +186,34 @@ bool double_linked_list::sort()
 			kfirst->next = nullptr;
 			last = kfirst;
 		}
+
 		else 
 			
 		if (min == kfirst) {}
 
+		else
+
+		if (kfirst->next = min) {           ///////////////////////////////////////
+		kfirst->previous->next = min;
+		min->next->previous = kfirst;
+		kfirst->next = min->next;
+		min->next = kfirst;
+		min->previous = kfirst->previous;
+		kfirst->previous = min;
+		}
+
 		else 
 		{
-			(kfirst->next)->previous = min;
-			(kfirst->previous)->next = min;
-			(min->next)->previous = kfirst;
-			(min->previous)->next = kfirst;
-			Pig1 = min->next;
-			Pig2 = min->previous;
-			min->next = kfirst->next;
-			min->previous = kfirst->previous;
-			first->next = Pig1;
-			first->previous = Pig2;
+		(kfirst->next)->previous = min;
+		(kfirst->previous)->next = min;
+		(min->next)->previous = kfirst;
+		(min->previous)->next = kfirst;
+		Pig1 = min->next;
+		Pig2 = min->previous;
+		min->next = kfirst->next;
+		min->previous = kfirst->previous;
+		first->next = Pig1;
+		first->previous = Pig2;
 		}
 	kfirst = min->next;
 	}
@@ -210,9 +224,9 @@ int main()
 	double_linked_list b(58);
 	b.add(7);
 	b.add(27);
-	//b.add(42);
-	//b.add(13);
-	//b.add(24);
+	b.add(42);
+	b.add(13);
+	b.add(24);
 	b.vivod1();
 	b.vivod2();
 	b.sort();
