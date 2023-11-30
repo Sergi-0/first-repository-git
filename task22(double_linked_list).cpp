@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 
 using namespace std;
 
@@ -66,24 +66,24 @@ void double_linked_list::vivod2()
 
 
 
-bool double_linked_list::sort() ///////////////////////////////// АД НАЧИНАЕТСЯ ЗДЕСЬ
+bool double_linked_list::sort() 
 {
-	if (first == nullptr || first == last) return true;
+	if (first == nullptr || first == last) return true;        // если в списке нет или 1 элемент, выходим
 
-	Node* Pig1 = nullptr;	////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	Node* Pig1 = nullptr;	
 	Node* Pig2 = nullptr;
-	Node* kfirst = first;  ///////////// ОТДЕЛЬНАЯ ОБРАБОТКА ПЕРВОГО ЭЛЕМЕНТА
+	Node* kfirst = first;  
 	Node* a = kfirst;
 	int minn = kfirst->data;
 	Node* min = kfirst;
 
 	while (a != nullptr)
 	{
-		if (a->data < minn) { min = a; minn = a->data; };
+		if (a->data < minn) { min = a; minn = a->data; };         // идем по списку с первого элемента и находим минимум
 		a = a->next;
 	}
 
-	if (min->next == nullptr && (kfirst->next)->next == nullptr)
+	if (min->next == nullptr && kfirst->next->next == nullptr)         // если в списке 2 элемента и минимальный на конце, сортируем их и выходим
 	{
 		kfirst->next = nullptr;
 		min->previous = nullptr;
@@ -95,7 +95,11 @@ bool double_linked_list::sort() ///////////////////////////////// АД НАЧИ�
 	}
 
 	else
-	
+
+	if (min->next->next == nullptr && kfirst->next->next == nullptr) return true;      // если в списке 2 элемента и они в нужном порядке, выходим
+
+	else
+
 	if (min->next == nullptr) {
 		(min->previous)->next = kfirst;
 		(kfirst->next)->previous = min;
@@ -113,7 +117,7 @@ bool double_linked_list::sort() ///////////////////////////////// АД НАЧИ�
 
 	else
 
-	{
+	{                                            ///////////////////////////// Я НЕ УЧИТЫВАЮ СИТУАЦИЮ КОГДА 2 ЭЛЕМЕНТА СТОЯТ ВЛОТНУЮ !!!!!!!!!!!!!!!!!!!!!!
 	(min->next)->previous = kfirst;
 	(min->previous)->next = kfirst;
 	(kfirst->next)->previous = min;
@@ -123,14 +127,15 @@ bool double_linked_list::sort() ///////////////////////////////// АД НАЧИ�
 	min->next = Pig1;
 	min->previous = nullptr;
 	first = min;
-	}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	}
+/*
+	kfirst = min->next;
+	bool t = true;
 
-	kfirst = min->next; //  ОБРАБОТКА СЛЕДУЮЩИЙ ПОСЛЕ ПЕРВОГО ЭЛЕМЕНТОВ, ЕСЛИ В СПИСКЕ БОЛЕЕ 2 УЗЛОВ
-
-	while (kfirst->next != nullptr) {
+	while (t) {
 		Pig1 = nullptr;
 		Pig2 = nullptr;
-		int minn = kfirst->data;
+		minn = kfirst->data;
 		min = kfirst;
 		a = kfirst;
 
@@ -139,14 +144,14 @@ bool double_linked_list::sort() ///////////////////////////////// АД НАЧИ�
 			if (a->data < minn) { min = a; minn = a->data; };
 			a = a->next;
 		}
-
-		if (min->next == nullptr && kfirst->next->next == nullptr)
+		
+		if (min->next == nullptr && kfirst->next->next == nullptr)          /////////// тут
 		{
+			kfirst->previous->next = min;
+            min->previous = kfirst->previous;
+            min->next = kfirst;
+            kfirst->previous = min;
 			kfirst->next = nullptr;
-			min->previous = nullptr;
-			min->next = kfirst;
-			kfirst->previous = min;
-			first = min;
 			last = kfirst;
 			return true;
 		}
@@ -186,7 +191,7 @@ bool double_linked_list::sort() ///////////////////////////////// АД НАЧИ�
 			first->previous = Pig2;
 		}
 	kfirst = min->next;
-	} //////////////////////////////////////////////////////////////////////////////////////////
+	}*/
 };
 
 int main()
@@ -194,11 +199,11 @@ int main()
 	double_linked_list b(58);
 	b.add(7);
 	b.add(27);
-	b.add(42);
-	b.add(13);
-	b.add(24);
+	//b.add(42);
+	//b.add(13);
+	//b.add(24);
 	b.vivod1();
 	b.vivod2();
 	b.sort();
-	b.vivod1();
+	b.vivod2();
 }
