@@ -149,7 +149,6 @@ bool double_linked_list::sort()
         min = kfirst;
 		minn = kfirst->data;
 		a = kfirst;
-		cout << 111111111111111<<"   ";
 		while (a != nullptr)
 		{
 			if (a->data < minn) { min = a; minn = a->data; };
@@ -158,14 +157,12 @@ bool double_linked_list::sort()
 		
 		if (min->next == nullptr && kfirst->next->next == nullptr)        
 		{
-			cout << "!!!!"<<kfirst << "!!!!!!!!";
 			kfirst->previous->next = min;
             min->previous = kfirst->previous;
             min->next = kfirst;
             kfirst->previous = min;
 			kfirst->next = nullptr;
 			last = kfirst;
-			cout << 111111111111111 << "   ";
 			return true;
 		}
 
@@ -183,6 +180,7 @@ bool double_linked_list::sort()
 			kfirst->previous = min->previous;
 			min->previous = Pig1;
 			min->next = kfirst->next;
+			///////////////////////////////cout << "!!!!" << 2222222222222 << "!!!!!!!!";
 			kfirst->next = nullptr;
 			last = kfirst;
 		}
