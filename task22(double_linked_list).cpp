@@ -82,7 +82,7 @@ bool double_linked_list::sort()
 		if (a->data < minn) { min = a; minn = a->data; };         // идем по списку с первого элемента и находим минимум
 		a = a->next;
 	}
-
+	
 	if (min->next == nullptr && kfirst->next->next == nullptr)         // если в списке 2 элемента и минимальный на конце, сортируем их и выходим
 	{
 		kfirst->next = nullptr;
@@ -96,19 +96,19 @@ bool double_linked_list::sort()
 
 	else
 
-	if (min->next->next == nullptr && kfirst->next->next == nullptr) return true;      // если в списке 2 элемента и они в нужном порядке, выходим
+	if (min==kfirst && kfirst->next->next == nullptr) { return true; }     // если в списке 2 элемента и они в нужном порядке, выходим
 
 	else
 
 	if (min->next == nullptr) {
-		(min->previous)->next = kfirst;
-		(kfirst->next)->previous = min;
-		min->next = kfirst->next;
-		kfirst->previous = min->previous;
-		min->previous = nullptr;
-		kfirst->next = nullptr;
-		first = min;
-		last = kfirst;
+	(min->previous)->next = kfirst;
+	(kfirst->next)->previous = min;
+	min->next = kfirst->next;
+	kfirst->previous = min->previous;
+	min->previous = nullptr;
+	kfirst->next = nullptr;
+	first = min;
+	last = kfirst;
 	}
 	
 	else 
@@ -117,7 +117,7 @@ bool double_linked_list::sort()
 
 	else
 
-	if (kfirst->next = min) {
+	if (kfirst->next == min) {
 	min->next->previous = kfirst;
 	kfirst->next = min->next;
 	min->next = kfirst;
@@ -128,7 +128,7 @@ bool double_linked_list::sort()
 
 	else
 
-	{                                            ///////////////////////////// Я НЕ УЧИТЫВАЮ СИТУАЦИЮ КОГДА 2 ЭЛЕМЕНТА СТОЯТ ВЛОТНУЮ !!!!!!!!!!!!!!!!!!!!!!
+	{                                   
 	(min->next)->previous = kfirst;
 	(min->previous)->next = kfirst;
 	(kfirst->next)->previous = min;
@@ -139,7 +139,6 @@ bool double_linked_list::sort()
 	min->previous = nullptr;
 	first = min;
 	}
-
 	kfirst = min->next;
 	bool t = true;
 
@@ -168,7 +167,7 @@ bool double_linked_list::sort()
 
 		else
 
-		if (min->next->next == nullptr && kfirst->next->next == nullptr) {return true;}
+		if (min == kfirst && kfirst->next->next == nullptr) {return true;}
 
 		else
 
@@ -180,7 +179,6 @@ bool double_linked_list::sort()
 			kfirst->previous = min->previous;
 			min->previous = Pig1;
 			min->next = kfirst->next;
-			///////////////////////////////cout << "!!!!" << 2222222222222 << "!!!!!!!!";
 			kfirst->next = nullptr;
 			last = kfirst;
 		}
@@ -191,7 +189,7 @@ bool double_linked_list::sort()
 
 		else
 
-		if (kfirst->next = min) {           ///////////////////////////////////////
+		if (kfirst->next == min) {           ///////////////////////////////////////
 		kfirst->previous->next = min;
 		min->next->previous = kfirst;
 		kfirst->next = min->next;
@@ -220,11 +218,11 @@ bool double_linked_list::sort()
 int main()
 {
 	double_linked_list b(58);
-	b.add(7);
 	b.add(27);
 	b.add(42);
+	b.add(1);
 	b.add(13);
-	b.add(24);
+	b.add(58);
 	b.vivod1();
 	b.vivod2();
 	b.sort();
