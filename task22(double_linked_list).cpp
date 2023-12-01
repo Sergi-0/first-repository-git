@@ -217,14 +217,17 @@ bool double_linked_list::sort()
 
 int main()
 {
-	double_linked_list b(58);
-	b.add(27);
-	b.add(42);
-	b.add(1);
-	b.add(13);
-	b.add(58);
+	double_linked_list b(1);
+	b.add(2);
+	b.add(3);
+	b.add(4);
+	b.add(5);
+	b.add(6);
+	//b.add(51);
+	//b.add(58);
+	//b.add(58);
 	b.vivod1();
-	b.vivod2();
+	//b.vivod2();
 	b.sort();
 	b.vivod1();
 }
