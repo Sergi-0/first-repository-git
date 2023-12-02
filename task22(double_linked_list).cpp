@@ -79,154 +79,157 @@ void double_linked_list::vivod2()
 
 
 bool double_linked_list::sort() {
-	if (first == nullptr || first == last) return true;      
-
-	Node* Pig1 = nullptr;	
-	Node* Pig2 = nullptr;
-	Node* kfirst = first;  
-	Node* a = kfirst;
-	int minn = kfirst->data;
-	Node* min = kfirst;
-
-	while (a != nullptr)
-	{
-		if (a->data < minn) { min = a; minn = a->data; };         
-		a = a->next;
-	}
 	
-	if (min->next == nullptr && kfirst->next->next == nullptr)         
-	{
-		kfirst->next = nullptr;
-		min->previous = nullptr;
-		min->next = kfirst;
-		kfirst->previous = min;
-		first = min;
-		last = kfirst;
-		return true;
-	}
+if (first == nullptr || first == last) return true;      
 
-	else
+Node* Pig1 = nullptr;	
+Node* Pig2 = nullptr;
+Node* kfirst = first;  
+Node* a = kfirst;
+int minn = kfirst->data;
+Node* min = kfirst;
 
-	if (min==kfirst && kfirst->next->next == nullptr) return true;  
-
-	else
-
-	if (min->next == nullptr) {
-		min->previous->next = kfirst;
-		kfirst->next->previous = min;
-		min->next = kfirst->next;
-		kfirst->previous = min->previous;
-		min->previous = nullptr;
-		kfirst->next = nullptr;
-		first = min;
-		last = kfirst;
-	}
+while (a != nullptr)
+{
+	if (a->data < minn) { min = a; minn = a->data; };         
+	a = a->next;
+}
 	
-	else 
+if (min->next == nullptr && kfirst->next->next == nullptr)         
+{
+	kfirst->next = nullptr;
+	min->previous = nullptr;
+	min->next = kfirst;
+	kfirst->previous = min;
+	first = min;
+	last = kfirst;
+	return true;
+}
+
+else
+
+if (min==kfirst && kfirst->next->next == nullptr) return true;  
+
+else
+
+if (min->next == nullptr) {
+	min->previous->next = kfirst;
+	kfirst->next->previous = min;
+	min->next = kfirst->next;
+	kfirst->previous = min->previous;
+	min->previous = nullptr;
+	kfirst->next = nullptr;
+	first = min;
+	last = kfirst;
+}
+	
+else 
 		
-	if(min == kfirst) {}
+if(min == kfirst) {}
 
-	else
+else
 
-	if (kfirst->next == min) {
-		min->next->previous = kfirst;
-		kfirst->next = min->next;
-		min->next = kfirst;
-		kfirst->previous = min;
-		min->previous = nullptr;
-		first = min;
-	}
+if (kfirst->next == min) {
+	min->next->previous = kfirst;
+	kfirst->next = min->next;
+	min->next = kfirst;
+	kfirst->previous = min;
+	min->previous = nullptr;
+	first = min;
+}
 
-	else
+else
 
-	{                                   
-		min->next->previous = kfirst;
-		min->previous->next = kfirst;
-		kfirst->next->previous = min;
-		Pig1 = kfirst->next;
-		kfirst->next = min->next;
-		kfirst->previous = min->previous;
-		min->next = Pig1;
-		min->previous = nullptr;
-		first = min;
-	}
+{                                   
+	min->next->previous = kfirst;
+	min->previous->next = kfirst;
+	kfirst->next->previous = min;
+	Pig1 = kfirst->next;
+	kfirst->next = min->next;
+	kfirst->previous = min->previous;
+	min->next = Pig1;
+	min->previous = nullptr;
+	first = min;
+}
 
-	kfirst = min->next;
-	bool t = true;
+kfirst = min->next;
+bool t = true;
 
-	while (t) {
-		Pig1 = nullptr;
-		Pig2 = nullptr;
-                min = kfirst;
-		minn = kfirst->data;
-		a = kfirst;
+while (t) {
+	
+Pig1 = nullptr;
+Pig2 = nullptr;
+min = kfirst;
+minn = kfirst->data;
+a = kfirst;
 		
-		while (a != nullptr)
-		{
-			if (a->data < minn) { min = a; minn = a->data; };
-			a = a->next;
-		}
-		
-		if (min->next == nullptr && kfirst->next->next == nullptr)        
-		{
-			kfirst->previous->next = min;
-                	min->previous = kfirst->previous;
-                	min->next = kfirst;
-                	kfirst->previous = min;
-			kfirst->next = nullptr;
-			last = kfirst;
-			return true;
-		}
+while (a != nullptr)
+{
+	if (a->data < minn) { min = a; minn = a->data; };
+	a = a->next;
+}
+	
+if (min->next == nullptr && kfirst->next->next == nullptr) {       
+	kfirst->previous->next = min;
+        min->previous = kfirst->previous;
+        min->next = kfirst;
+        kfirst->previous = min;
+	kfirst->next = nullptr;
+	last = kfirst;
+	return true;
+}
 
-		else
+else
 
-		if (min == kfirst && kfirst->next->next == nullptr) return true;
+if (min == kfirst && kfirst->next->next == nullptr) return true;
 
-		else
+else
 
-		if (min->next == nullptr) {
-			(min->previous)->next = kfirst;
-			(kfirst->next)->previous = min;
-			(kfirst->previous)->next = min;
-			Pig1 = kfirst->previous;
-			kfirst->previous = min->previous;
-			min->previous = Pig1;
-			min->next = kfirst->next;
-			kfirst->next = nullptr;
-			last = kfirst;
-		}
+if (min->next == nullptr) {
+	min->previous->next = kfirst;
+	kfirst->next->previous = min;
+	kfirst->previous->next = min;
+	Pig1 = kfirst->previous;
+	kfirst->previous = min->previous;
+	min->previous = Pig1;
+	min->next = kfirst->next;
+	kfirst->next = nullptr;
+	last = kfirst;
+}
 
-		else 
+else 
 			
-		if (min == kfirst) {}
+if (min == kfirst) {}
 
-		else
+else
 
-		if (kfirst->next == min) {          
-			kfirst->previous->next = min;
-			min->next->previous = kfirst;
-			kfirst->next = min->next;
-			min->next = kfirst;
-			min->previous = kfirst->previous;
-			kfirst->previous = min;
-		}
+if (kfirst->next == min) {          
+	kfirst->previous->next = min;
+	min->next->previous = kfirst;
+	kfirst->next = min->next;
+	min->next = kfirst;
+	min->previous = kfirst->previous;
+	kfirst->previous = min;
+}
 
-		else 
-		{
-			kfirst->next->previous = min;
-			kfirst->previous->next = min;
-			min->next->previous = kfirst;
-			min->previous->next = kfirst;
-			Pig1 = min->next;
-			Pig2 = min->previous;
-			min->next = kfirst->next;
-			min->previous = kfirst->previous;
-			kfirst->next = Pig1;
-			kfirst->previous = Pig2;
-		}
+else 
+{
+	kfirst->next->previous = min;
+	kfirst->previous->next = min;
+	min->next->previous = kfirst;
+	min->previous->next = kfirst;
+	Pig1 = min->next;
+	Pig2 = min->previous;
+	min->next = kfirst->next;
+	min->previous = kfirst->previous;
+	kfirst->next = Pig1;
+	kfirst->previous = Pig2;
+}
 		
-		kfirst = min->next;
-		}
+kfirst = min->next;
+	
+}
+	
 };
 
 int main()
