@@ -27,6 +27,18 @@ double_linked_list::double_linked_list()
 	last = nullptr;
 };
 
+double_linked_list::~double_linked_list()
+{
+	Node* p = first;
+	Node* a;
+	while (p != nullptr)
+	{
+		a = p->next;
+		delete p;
+		p = a;
+	}
+};
+
 double_linked_list::double_linked_list(int data)
 {
 	Node* p = new Node{ nullptr, nullptr, data };
@@ -66,8 +78,7 @@ void double_linked_list::vivod2()
 
 
 
-bool double_linked_list::sort() 
-{
+bool double_linked_list::sort() {
 	if (first == nullptr || first == last) return true;      
 
 	Node* Pig1 = nullptr;	
@@ -96,19 +107,19 @@ bool double_linked_list::sort()
 
 	else
 
-	if (min==kfirst && kfirst->next->next == nullptr) { return true; }     
+	if (min==kfirst && kfirst->next->next == nullptr) return true;  
 
 	else
 
 	if (min->next == nullptr) {
-	(min->previous)->next = kfirst;
-	(kfirst->next)->previous = min;
-	min->next = kfirst->next;
-	kfirst->previous = min->previous;
-	min->previous = nullptr;
-	kfirst->next = nullptr;
-	first = min;
-	last = kfirst;
+		min->previous->next = kfirst;
+		kfirst->next->previous = min;
+		min->next = kfirst->next;
+		kfirst->previous = min->previous;
+		min->previous = nullptr;
+		kfirst->next = nullptr;
+		first = min;
+		last = kfirst;
 	}
 	
 	else 
@@ -118,36 +129,38 @@ bool double_linked_list::sort()
 	else
 
 	if (kfirst->next == min) {
-	min->next->previous = kfirst;
-	kfirst->next = min->next;
-	min->next = kfirst;
-	kfirst->previous = min;
-	min->previous = nullptr;
-	first = min;
+		min->next->previous = kfirst;
+		kfirst->next = min->next;
+		min->next = kfirst;
+		kfirst->previous = min;
+		min->previous = nullptr;
+		first = min;
 	}
 
 	else
 
 	{                                   
-	(min->next)->previous = kfirst;
-	(min->previous)->next = kfirst;
-	(kfirst->next)->previous = min;
-	Pig1 = kfirst->next;
-	kfirst->next = min->next;
-	kfirst->previous = min->previous;
-	min->next = Pig1;
-	min->previous = nullptr;
-	first = min;
+		min->next->previous = kfirst;
+		min->previous->next = kfirst;
+		kfirst->next->previous = min;
+		Pig1 = kfirst->next;
+		kfirst->next = min->next;
+		kfirst->previous = min->previous;
+		min->next = Pig1;
+		min->previous = nullptr;
+		first = min;
 	}
+
 	kfirst = min->next;
 	bool t = true;
 
 	while (t) {
 		Pig1 = nullptr;
 		Pig2 = nullptr;
-        min = kfirst;
+                min = kfirst;
 		minn = kfirst->data;
 		a = kfirst;
+		
 		while (a != nullptr)
 		{
 			if (a->data < minn) { min = a; minn = a->data; };
@@ -157,9 +170,9 @@ bool double_linked_list::sort()
 		if (min->next == nullptr && kfirst->next->next == nullptr)        
 		{
 			kfirst->previous->next = min;
-            min->previous = kfirst->previous;
-            min->next = kfirst;
-            kfirst->previous = min;
+                	min->previous = kfirst->previous;
+                	min->next = kfirst;
+                	kfirst->previous = min;
 			kfirst->next = nullptr;
 			last = kfirst;
 			return true;
@@ -167,7 +180,7 @@ bool double_linked_list::sort()
 
 		else
 
-		if (min == kfirst && kfirst->next->next == nullptr) {return true;}
+		if (min == kfirst && kfirst->next->next == nullptr) return true;
 
 		else
 
@@ -190,29 +203,30 @@ bool double_linked_list::sort()
 		else
 
 		if (kfirst->next == min) {          
-		kfirst->previous->next = min;
-		min->next->previous = kfirst;
-		kfirst->next = min->next;
-		min->next = kfirst;
-		min->previous = kfirst->previous;
-		kfirst->previous = min;
+			kfirst->previous->next = min;
+			min->next->previous = kfirst;
+			kfirst->next = min->next;
+			min->next = kfirst;
+			min->previous = kfirst->previous;
+			kfirst->previous = min;
 		}
 
 		else 
 		{
-		(kfirst->next)->previous = min;
-		(kfirst->previous)->next = min;
-		(min->next)->previous = kfirst;
-		(min->previous)->next = kfirst;
-		Pig1 = min->next;
-		Pig2 = min->previous;
-		min->next = kfirst->next;
-		min->previous = kfirst->previous;
-		kfirst->next = Pig1;
-		kfirst->previous = Pig2;
+			kfirst->next->previous = min;
+			kfirst->previous->next = min;
+			min->next->previous = kfirst;
+			min->previous->next = kfirst;
+			Pig1 = min->next;
+			Pig2 = min->previous;
+			min->next = kfirst->next;
+			min->previous = kfirst->previous;
+			kfirst->next = Pig1;
+			kfirst->previous = Pig2;
 		}
-	kfirst = min->next;
-	}
+		
+		kfirst = min->next;
+		}
 };
 
 int main()
@@ -223,11 +237,11 @@ int main()
 	b.add(4);
 	b.add(5);
 	b.add(6);
-	//b.add(51);
-	//b.add(58);
-	//b.add(58);
+	b.add(51);
+	b.add(58);
+	b.add(58);
 	b.vivod1();
-	//b.vivod2();
+	b.vivod2();
 	b.sort();
 	b.vivod1();
 }
