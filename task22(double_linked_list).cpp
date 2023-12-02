@@ -12,6 +12,7 @@ class double_linked_list {
 public:
 	double_linked_list();
 	double_linked_list(int data);
+	~double_linked_list();
 	bool add(int data);
 	void vivod1();
 	void vivod2();
