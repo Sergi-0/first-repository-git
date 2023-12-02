@@ -68,7 +68,7 @@ void double_linked_list::vivod2()
 
 bool double_linked_list::sort() 
 {
-	if (first == nullptr || first == last) return true;        // если в списке нет или 1 элемент, выходим
+	if (first == nullptr || first == last) return true;      
 
 	Node* Pig1 = nullptr;	
 	Node* Pig2 = nullptr;
@@ -79,11 +79,11 @@ bool double_linked_list::sort()
 
 	while (a != nullptr)
 	{
-		if (a->data < minn) { min = a; minn = a->data; };         // идем по списку с первого элемента и находим минимум
+		if (a->data < minn) { min = a; minn = a->data; };         
 		a = a->next;
 	}
 	
-	if (min->next == nullptr && kfirst->next->next == nullptr)         // если в списке 2 элемента и минимальный на конце, сортируем их и выходим
+	if (min->next == nullptr && kfirst->next->next == nullptr)         
 	{
 		kfirst->next = nullptr;
 		min->previous = nullptr;
@@ -96,7 +96,7 @@ bool double_linked_list::sort()
 
 	else
 
-	if (min==kfirst && kfirst->next->next == nullptr) { return true; }     // если в списке 2 элемента и они в нужном порядке, выходим
+	if (min==kfirst && kfirst->next->next == nullptr) { return true; }     
 
 	else
 
@@ -189,7 +189,7 @@ bool double_linked_list::sort()
 
 		else
 
-		if (kfirst->next == min) {           ///////////////////////////////////////
+		if (kfirst->next == min) {          
 		kfirst->previous->next = min;
 		min->next->previous = kfirst;
 		kfirst->next = min->next;
@@ -208,8 +208,8 @@ bool double_linked_list::sort()
 		Pig2 = min->previous;
 		min->next = kfirst->next;
 		min->previous = kfirst->previous;
-		first->next = Pig1;
-		first->previous = Pig2;
+		kfirst->next = Pig1;
+		kfirst->previous = Pig2;
 		}
 	kfirst = min->next;
 	}
