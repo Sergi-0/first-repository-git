@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include <map>
 #include <vector>
@@ -32,7 +32,7 @@ void saveToFile(const string& filename, const Groups& groups)
         cin >> a;
         auto it = groups.find(a);
 
-        file << a << ":" <<endl;
+        file << a << ":\n";
         for(const auto &i : it->second){
         file << i.Name << "/";
         for (const auto& t : i.RecordBook) file << t.first << " " << t.second << "/";
@@ -49,7 +49,8 @@ void loadFromFile(const string& filename, Groups& outGroups) {
         vector<Student> b;
         Student c;
         getline(file, k, ':');
-        
+        getline(file, a);
+       
         while (getline(file, a)) {
 
             stringstream t(a);
@@ -58,13 +59,13 @@ void loadFromFile(const string& filename, Groups& outGroups) {
 
             getline(t, l, ' ');
             getline(t, f, '/');
-            c.RecordBook.emplace(pair<string, Score> (l, Score(atof(f.c_str()))));
+            c.RecordBook.emplace(pair<string, Score> (l, Score(atoi(f.c_str()))));
             getline(t, l, ' ');
             getline(t, f, '/');
-            c.RecordBook.emplace(pair<string, Score>(l, Score(atof(f.c_str()))));
+            c.RecordBook.emplace(pair<string, Score>(l, Score(atoi(f.c_str()))));
             getline(t, l, ' ');
             getline(t, f, '/');
-            c.RecordBook.emplace(pair<string, Score>(l, Score(atof(f.c_str()))));
+            c.RecordBook.emplace(pair<string, Score>(l, Score(atoi(f.c_str()))));
 
             getline(t, l, '.');
             c.Year = atoi(l.c_str());
@@ -113,4 +114,6 @@ int main()
     Groups outGroups;
 
     saveToFile("privet.txt", groups);
+    loadFromFile("privet.txt", outGroups);
+    cout << outGroups["IU10"][0].Name << " math: " << outGroups["IU10"][0].RecordBook["math"] << " Year: " << outGroups["IU10"][0].Year;
 }
